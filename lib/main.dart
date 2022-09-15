@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'screens/signup.dart';
 import 'screens/forgotPassword.dart';
+import 'screens/otp.dart';
+import 'screens/resetPassword.dart';
 
 void main() {
   Firebase.initializeApp(
@@ -16,7 +18,9 @@ void main() {
     routes: {
       "/": (context) => login(),
       "/signup": (context) => signup(),
-      "/forgetPass": (context) => forgotPass()
+      "/forgetPass": (context) => forgotPass(),
+      "/OTP": (context) => otp(),
+      "/resetPass": (context) => resetPass()
     },
   ));
 }
