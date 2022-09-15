@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -24,9 +26,9 @@ class _loginState extends State<login> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          SvgPicture.asset("assets/office.svg", height: 280, width: 600),
+          SvgPicture.asset("assets/office.svg", height: 300, width: 600),
           Padding(
-              padding: EdgeInsets.only(left: 17, bottom: 10),
+              padding: EdgeInsets.only(left: 17, bottom: 20),
               child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -34,25 +36,24 @@ class _loginState extends State<login> {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 37,
+                      fontSize: 40,
                     ),
                   ))),
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 10, right: 17),
               child: TextFormField(
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.email_rounded),
+                    prefixIcon: Icon(Icons.alternate_email),
                     enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 195, 194, 194))),
                     border: InputBorder.none,
-                    labelText: 'Email ID',
                     hintText: 'Enter Your Email'),
                 style: TextStyle(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
-              padding: EdgeInsets.only(left: 17, right: 17),
+              padding: EdgeInsets.only(left: 17, right: 17, bottom: 10),
               child: TextFormField(
                 obscureText: invisible,
                 decoration: InputDecoration(
@@ -68,24 +69,26 @@ class _loginState extends State<login> {
                       borderSide: BorderSide(
                           color: Color.fromARGB(255, 195, 194, 194))),
                   border: InputBorder.none,
-                  labelText: 'Password',
                   hintText: 'Password',
                 ),
                 style: TextStyle(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
-              padding: EdgeInsets.only(right: 17, top: 20, bottom: 20),
+              padding: EdgeInsets.only(right: 17, top: 5, bottom: 20),
               child: Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot Password?",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Color.fromRGBO(1, 101, 255, 1)),
-                  ))),
+                  child: GestureDetector(
+                      onTap: () =>
+                          {Navigator.pushNamed(context, "/forgetPass")},
+                      child: Text(
+                        "Forgot Password?",
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Color.fromRGBO(1, 101, 255, 1)),
+                      )))),
           TextButton(
             // ignore: sort_child_properties_last
             child: Text(
@@ -145,7 +148,7 @@ class _loginState extends State<login> {
                 onPressed: () {},
               )),
           Padding(
-              padding: EdgeInsets.only(top: 33, bottom: 10),
+              padding: EdgeInsets.only(top: 30, bottom: 10),
               child: Align(
                   alignment: Alignment.center,
                   child: Text.rich(TextSpan(style: TextStyle(),
@@ -158,6 +161,10 @@ class _loginState extends State<login> {
                                 color: Color.fromARGB(255, 117, 123, 132))),
                         TextSpan(
                             text: "  Register",
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.pushNamed(context, '/signup');
+                              },
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
