@@ -53,17 +53,82 @@ class _otpState extends State<otp> {
           Padding(
               padding:
                   EdgeInsets.only(left: 17, bottom: 30, top: 10, right: 17),
-              child: TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.code_outlined),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 195, 194, 194))),
-                    border: InputBorder.none,
-                    hintText: 'Enter OTP'),
-                style: TextStyle(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                      height: 60,
+                      width: 40,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 30),
+                        decoration: InputDecoration(hintText: "0"),
+                        onChanged: ((value) => {
+                              if (value.length == 1)
+                                {FocusScope.of(context).nextFocus()}
+                            }),
+                        onSaved: (pin1) {},
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      )),
+                  SizedBox(
+                      height: 60,
+                      width: 40,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 30),
+                        decoration: InputDecoration(hintText: "0"),
+                        onChanged: ((value) => {
+                              if (value.length == 1)
+                                {FocusScope.of(context).nextFocus()}
+                            }),
+                        onSaved: (pin2) {},
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      )),
+                  SizedBox(
+                      height: 60,
+                      width: 40,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 30),
+                        decoration: InputDecoration(hintText: "0"),
+                        onChanged: ((value) => {
+                              if (value.length == 1)
+                                {FocusScope.of(context).nextFocus()}
+                            }),
+                        onSaved: (pin3) {},
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      )),
+                  SizedBox(
+                      height: 60,
+                      width: 40,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 30),
+                        decoration: InputDecoration(hintText: "0"),
+                        onChanged: ((value) => {
+                              if (value.length == 1)
+                                {FocusScope.of(context).nextFocus()}
+                            }),
+                        onSaved: (pin4) {},
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(1),
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                      ))
+                ],
               )),
           Container(
               padding: EdgeInsets.only(top: 40, bottom: 10),
