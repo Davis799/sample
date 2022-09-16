@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class resetPass extends StatefulWidget {
   const resetPass({super.key});
@@ -45,7 +46,7 @@ class _resetPassState extends State<resetPass> {
                   child: Text(
                     "Reset \nPassword",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: GoogleFonts.openSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ),
@@ -70,7 +71,7 @@ class _resetPassState extends State<resetPass> {
                   border: InputBorder.none,
                   hintText: 'New password',
                 ),
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
@@ -93,7 +94,7 @@ class _resetPassState extends State<resetPass> {
                   border: InputBorder.none,
                   hintText: 'Confirm New Password',
                 ),
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Container(
@@ -102,7 +103,7 @@ class _resetPassState extends State<resetPass> {
                 // ignore: sort_child_properties_last
                 child: Text(
                   'Submit',
-                  style: TextStyle(
+                  style: GoogleFonts.openSans(
                     fontSize: 20.0,
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),

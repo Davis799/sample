@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -19,7 +20,7 @@ class _signupState extends State<signup> {
       body: SingleChildScrollView(
           child: Column(
         children: [
-          SvgPicture.asset("assets/teamwork.svg", height: 300, width: 600),
+          SvgPicture.asset("assets/teamwork.svg", height: 285, width: 600),
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 20, top: 5),
               child: Align(
@@ -27,7 +28,7 @@ class _signupState extends State<signup> {
                   child: Text(
                     "Sign up",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: GoogleFonts.openSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ),
@@ -42,7 +43,7 @@ class _signupState extends State<signup> {
                             color: Color.fromARGB(255, 195, 194, 194))),
                     border: InputBorder.none,
                     hintText: 'Enter Your Email'),
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
@@ -56,7 +57,7 @@ class _signupState extends State<signup> {
                   border: InputBorder.none,
                   hintText: 'Full name',
                 ),
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
@@ -71,30 +72,30 @@ class _signupState extends State<signup> {
                   border: InputBorder.none,
                   hintText: 'Mobile',
                 ),
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 7, left: 20, right: 20),
+              padding: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text.rich(TextSpan(style: TextStyle(),
+                  child: Text.rich(TextSpan(style: GoogleFonts.openSans(),
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TextSpan(
                             text: "By signing up, you agree to our",
-                            style: TextStyle(
+                            style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 117, 123, 132))),
                         TextSpan(
                             text: "  Terms & Conditions",
-                            style: TextStyle(
+                            style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(1, 101, 255, 1))),
                         TextSpan(
                             text: " and ",
-                            style: TextStyle(
+                            style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 117, 123, 132))),
                         TextSpan(
@@ -110,7 +111,7 @@ class _signupState extends State<signup> {
                 // ignore: sort_child_properties_last
                 child: Text(
                   'Continue',
-                  style: TextStyle(
+                  style: GoogleFonts.openSans(
                     fontSize: 17.0,
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),
@@ -125,15 +126,15 @@ class _signupState extends State<signup> {
                 onPressed: () {},
               )),
           Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: EdgeInsets.only(top: 20, bottom: 10),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text.rich(TextSpan(style: TextStyle(),
+                  child: Text.rich(TextSpan(style: GoogleFonts.openSans(),
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TextSpan(
                             text: "Joined us before?",
-                            style: TextStyle(
+                            style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 117, 123, 132))),
                         TextSpan(
@@ -142,7 +143,7 @@ class _signupState extends State<signup> {
                               ..onTap = () {
                                 Navigator.pushNamed(context, '/');
                               },
-                            style: TextStyle(
+                            style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(1, 101, 255, 1)))

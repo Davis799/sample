@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -31,14 +32,10 @@ class _loginState extends State<login> {
               padding: EdgeInsets.only(left: 17, bottom: 20),
               child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Login",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                    ),
-                  ))),
+                  child: Text("Login",
+                      textAlign: TextAlign.left,
+                      style: GoogleFonts.roboto(
+                          fontSize: 40, fontWeight: FontWeight.bold)))),
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 10, right: 17),
               child: TextFormField(
@@ -49,7 +46,7 @@ class _loginState extends State<login> {
                             color: Color.fromARGB(255, 195, 194, 194))),
                     border: InputBorder.none,
                     hintText: 'Enter Your Email'),
-                style: TextStyle(
+                style: GoogleFonts.roboto(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
@@ -71,7 +68,7 @@ class _loginState extends State<login> {
                   border: InputBorder.none,
                   hintText: 'Password',
                 ),
-                style: TextStyle(
+                style: GoogleFonts.roboto(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
@@ -84,7 +81,7 @@ class _loginState extends State<login> {
                       child: Text(
                         "Forgot Password?",
                         textAlign: TextAlign.right,
-                        style: TextStyle(
+                        style: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                             color: Color.fromRGBO(1, 101, 255, 1)),
@@ -93,7 +90,7 @@ class _loginState extends State<login> {
             // ignore: sort_child_properties_last
             child: Text(
               'Login',
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 17.0,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
@@ -112,7 +109,7 @@ class _loginState extends State<login> {
               child: Text(
                 "OR",
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
                     color: Color.fromARGB(255, 135, 135, 135)),
@@ -132,7 +129,7 @@ class _loginState extends State<login> {
                       ),
                       Text(
                         '  Login with Google',
-                        style: TextStyle(
+                        style: GoogleFonts.roboto(
                           fontSize: 17.0,
                           color: Color.fromARGB(255, 97, 97, 97),
                         ),
@@ -151,12 +148,12 @@ class _loginState extends State<login> {
               padding: EdgeInsets.only(top: 30, bottom: 10),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text.rich(TextSpan(style: TextStyle(),
+                  child: Text.rich(TextSpan(style: GoogleFonts.roboto(),
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TextSpan(
                             text: "New to SkyConnect?",
-                            style: TextStyle(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 117, 123, 132))),
                         TextSpan(
@@ -165,7 +162,7 @@ class _loginState extends State<login> {
                               ..onTap = () {
                                 Navigator.pushNamed(context, '/signup');
                               },
-                            style: TextStyle(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(1, 101, 255, 1)))

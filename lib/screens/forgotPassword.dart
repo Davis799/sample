@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class forgotPass extends StatefulWidget {
   const forgotPass({super.key});
@@ -27,33 +28,33 @@ class _forgotPassState extends State<forgotPass> {
                   child: Text(
                     "Forgot \nPassword?",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: GoogleFonts.openSans(
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                     ),
                   ))),
           Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 25, left: 20, right: 20),
+            padding: EdgeInsets.only(top: 10, bottom: 15, left: 20, right: 20),
             child: Text(
               "Don't worry! It happens. Please enter the address associated with your account",
-              style: TextStyle(
+              style: GoogleFonts.openSans(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 117, 123, 132)),
+                  color: Color.fromRGBO(134, 144, 157, 1)),
             ),
           ),
           Padding(
               padding:
-                  EdgeInsets.only(left: 17, bottom: 20, top: 10, right: 17),
+                  EdgeInsets.only(left: 17, bottom: 10, top: 10, right: 17),
               child: TextFormField(
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.alternate_email),
                     enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromARGB(255, 195, 194, 194))),
+                            color: Color.fromRGBO(134, 144, 157, 1))),
                     border: InputBorder.none,
                     hintText: 'Email ID / Mobile number'),
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Container(
@@ -62,7 +63,7 @@ class _forgotPassState extends State<forgotPass> {
                 // ignore: sort_child_properties_last
                 child: Text(
                   'Submit',
-                  style: TextStyle(
+                  style: GoogleFonts.openSans(
                     fontSize: 17.0,
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),
