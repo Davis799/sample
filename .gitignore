@@ -9,7 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
-lib/provider/
+lib/firebase_options
 
 
 # IntelliJ related
