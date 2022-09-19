@@ -42,9 +42,9 @@ class _otpState extends State<otp> {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding:
-                    EdgeInsets.only(top: 20, bottom: 25, left: 20, right: 20),
+                    EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
                 child: Text(
-                  "A 4 digit code has been sent to \n",
+                  "A 4 digit code has been sent to \n+255*********",
                   style: GoogleFonts.openSans(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -56,6 +56,7 @@ class _otpState extends State<otp> {
                   EdgeInsets.only(left: 17, bottom: 30, top: 10, right: 17),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     margin: EdgeInsets.only(right: 20),
@@ -142,7 +143,6 @@ class _otpState extends State<otp> {
                         )),
                   ),
                   Container(
-                    margin: EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
                         border: Border.all(
                             width: 1, color: Color.fromRGBO(123, 127, 137, 1)),
