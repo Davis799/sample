@@ -66,8 +66,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '251346581862',
     projectId: 'skyconnect-init',
     storageBucket: 'skyconnect-init.appspot.com',
-    androidClientId: '251346581862-ksmd1gl1jeogqllonf1mevvftt4gdbt0.apps.googleusercontent.com',
-    iosClientId: '251346581862-vo312phk82eqv5l3mbbopni7v8nb21up.apps.googleusercontent.com',
+    iosClientId:
+        '251346581862-vo312phk82eqv5l3mbbopni7v8nb21up.apps.googleusercontent.com',
     iosBundleId: 'com.example.sample',
   );
 
@@ -77,8 +77,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '251346581862',
     projectId: 'skyconnect-init',
     storageBucket: 'skyconnect-init.appspot.com',
-    androidClientId: '251346581862-ksmd1gl1jeogqllonf1mevvftt4gdbt0.apps.googleusercontent.com',
-    iosClientId: '251346581862-vo312phk82eqv5l3mbbopni7v8nb21up.apps.googleusercontent.com',
+    iosClientId:
+        '251346581862-vo312phk82eqv5l3mbbopni7v8nb21up.apps.googleusercontent.com',
     iosBundleId: 'com.example.sample',
   );
 }

@@ -19,7 +19,11 @@ class GoogleSignInProvider extends ChangeNotifier {
       idToken: googleAuth.idToken,
     );
     await FirebaseAuth.instance.signInWithCredential(Credential);
-
     notifyListeners();
+  }
+
+  Future googleLogout() async {
+    //await googleSignIn.disconnect();
+    FirebaseAuth.instance.signOut();
   }
 }

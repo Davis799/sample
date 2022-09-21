@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../main.dart';
 import '../provider/google_sign_in.dart';
 
 class login extends StatefulWidget {
@@ -21,6 +22,64 @@ class _loginState extends State<login> {
     setState(() {
       invisible = !invisible;
     });
+  }
+
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
+
+  Future _logIn() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => Material(
+                color: Colors.transparent,
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.all(30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        e.message!,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.roboto(
+                            fontSize: 25,
+                            backgroundColor: Colors.red,
+                            color: Colors.white),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/');
+                          },
+                          child: Text(
+                            " Back ",
+                            style: GoogleFonts.roboto(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ))
+                    ],
+                  ),
+                ),
+              ));
+      print(e);
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   @override
@@ -44,6 +103,8 @@ class _loginState extends State<login> {
             Padding(
                 padding: EdgeInsets.only(left: 17, bottom: 10, right: 17),
                 child: TextFormField(
+                  textInputAction: TextInputAction.next,
+                  controller: emailController,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.alternate_email),
                       enabledBorder: UnderlineInputBorder(
@@ -57,6 +118,8 @@ class _loginState extends State<login> {
             Padding(
                 padding: EdgeInsets.only(left: 17, right: 17, bottom: 10),
                 child: TextFormField(
+                  controller: passController,
+                  textInputAction: TextInputAction.next,
                   obscureText: invisible,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.lock_rounded),
@@ -82,7 +145,7 @@ class _loginState extends State<login> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                         onTap: () =>
-                            {Navigator.pushNamed(context, "/forgetPass")},
+                            Navigator.pushNamed(context, "/forgotPass"),
                         child: Text(
                           "Forgot Password?",
                           textAlign: TextAlign.right,
@@ -92,23 +155,22 @@ class _loginState extends State<login> {
                               color: Color.fromRGBO(1, 101, 255, 1)),
                         )))),
             TextButton(
-              // ignore: sort_child_properties_last
-              child: Text(
-                'Login',
-                style: GoogleFonts.roboto(
-                  fontSize: 17.0,
-                  color: Color.fromARGB(255, 255, 255, 255),
+                // ignore: sort_child_properties_last
+                child: Text(
+                  'Login',
+                  style: GoogleFonts.roboto(
+                    fontSize: 17.0,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
                 ),
-              ),
-              style: TextButton.styleFrom(
-                  padding: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  minimumSize: Size(350, 50),
-                  backgroundColor: Color.fromRGBO(1, 101, 255, 1),
-                  alignment: Alignment.center),
-              onPressed: () {},
-            ),
+                style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    minimumSize: Size(350, 50),
+                    backgroundColor: Color.fromRGBO(1, 101, 255, 1),
+                    alignment: Alignment.center),
+                onPressed: _logIn),
             Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(
@@ -151,6 +213,7 @@ class _loginState extends State<login> {
                     final provider = Provider.of<GoogleSignInProvider>(context,
                         listen: false);
                     provider.googleLogin();
+                    //Navigator.pushNamed(context, "/homepage");
                   },
                 )),
             Padding(

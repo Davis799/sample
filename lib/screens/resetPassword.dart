@@ -52,57 +52,21 @@ class _resetPassState extends State<resetPass> {
                     ),
                   ))),
           Padding(
-              padding:
-                  EdgeInsets.only(left: 17, bottom: 15, top: 10, right: 17),
-              child: TextFormField(
-                obscureText: invisible1,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_rounded),
-                  suffixIcon: GestureDetector(
-                      onTap: togglePass1,
-                      child: Icon(
-                        invisible1
-                            ? Icons.visibility_off
-                            : Icons.visibility_sharp,
-                      )),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 195, 194, 194))),
-                  border: InputBorder.none,
-                  hintText: 'New password',
-                ),
-                style: GoogleFonts.openSans(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
-              )),
-          Padding(
-              padding:
-                  EdgeInsets.only(left: 17, bottom: 15, top: 10, right: 17),
-              child: TextFormField(
-                obscureText: invisible2,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_rounded),
-                  suffixIcon: GestureDetector(
-                      onTap: togglePass2,
-                      child: Icon(
-                        invisible2
-                            ? Icons.visibility_off
-                            : Icons.visibility_sharp,
-                      )),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 195, 194, 194))),
-                  border: InputBorder.none,
-                  hintText: 'Confirm New Password',
-                ),
-                style: GoogleFonts.openSans(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
-              )),
+            padding: EdgeInsets.only(top: 10, bottom: 15, left: 20, right: 20),
+            child: Text(
+              "A Link has been sent to your email. Click it to reset your Password",
+              style: GoogleFonts.openSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromRGBO(134, 144, 157, 1)),
+            ),
+          ),
           Container(
               padding: EdgeInsets.only(top: 25, bottom: 10),
               child: TextButton(
                 // ignore: sort_child_properties_last
                 child: Text(
-                  'Submit',
+                  'Okay',
                   style: GoogleFonts.openSans(
                     fontSize: 20.0,
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -115,7 +79,9 @@ class _resetPassState extends State<resetPass> {
                     minimumSize: Size(350, 50),
                     backgroundColor: Color.fromRGBO(1, 101, 255, 1),
                     alignment: Alignment.center),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/');
+                },
               )),
         ],
       )),

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/utilis/utilis.dart';
+
+import '../main.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -13,6 +16,43 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+  bool invisible = true;
+  void togglePass() {
+    setState(() {
+      invisible = !invisible;
+    });
+  }
+
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  final phoneController = TextEditingController();
+  final nameController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
+
+  Future _signIn() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passController.text.trim());
+      //Navigator.pushNamed(context, '/');
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +76,7 @@ class _signupState extends State<signup> {
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 13, right: 17),
               child: TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.alternate_email),
                     enabledBorder: UnderlineInputBorder(
@@ -76,6 +117,30 @@ class _signupState extends State<signup> {
                     fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
               )),
           Padding(
+              padding: EdgeInsets.only(left: 17, right: 17, bottom: 10),
+              child: TextFormField(
+                controller: passController,
+                textInputAction: TextInputAction.next,
+                obscureText: invisible,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock_rounded),
+                  suffixIcon: GestureDetector(
+                      onTap: togglePass,
+                      child: Icon(
+                        invisible
+                            ? Icons.visibility_off
+                            : Icons.visibility_sharp,
+                      )),
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 195, 194, 194))),
+                  border: InputBorder.none,
+                  hintText: 'Password  (min 6 characters)',
+                ),
+                style: GoogleFonts.roboto(
+                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+              )),
+          Padding(
               padding: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
               child: Align(
                   alignment: Alignment.center,
@@ -108,23 +173,22 @@ class _signupState extends State<signup> {
           Container(
               padding: EdgeInsets.only(top: 20, bottom: 10),
               child: TextButton(
-                // ignore: sort_child_properties_last
-                child: Text(
-                  'Continue',
-                  style: GoogleFonts.openSans(
-                    fontSize: 17.0,
-                    color: Color.fromARGB(255, 255, 255, 255),
+                  // ignore: sort_child_properties_last
+                  child: Text(
+                    'Continue',
+                    style: GoogleFonts.openSans(
+                      fontSize: 17.0,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ),
                   ),
-                ),
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.all(10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    minimumSize: Size(350, 50),
-                    backgroundColor: Color.fromRGBO(1, 101, 255, 1),
-                    alignment: Alignment.center),
-                onPressed: () {},
-              )),
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      minimumSize: Size(350, 50),
+                      backgroundColor: Color.fromRGBO(1, 101, 255, 1),
+                      alignment: Alignment.center),
+                  onPressed: _signIn)),
           Padding(
               padding: EdgeInsets.only(top: 20, bottom: 10),
               child: Align(
@@ -141,7 +205,7 @@ class _signupState extends State<signup> {
                             text: "  Login",
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                Navigator.pushNamed(context, '/');
+                                Navigator.pushNamed(context, '/login');
                               },
                             style: GoogleFonts.openSans(
                                 fontSize: 15,
