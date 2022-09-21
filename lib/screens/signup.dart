@@ -171,7 +171,7 @@ class _signupState extends State<signup> {
                                 color: Color.fromRGBO(1, 101, 255, 1)))
                       ])))),
           Container(
-              padding: EdgeInsets.only(top: 20, bottom: 10),
+              padding: EdgeInsets.only(top: 20),
               child: TextButton(
                   // ignore: sort_child_properties_last
                   child: Text(

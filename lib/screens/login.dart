@@ -45,38 +45,6 @@ class _loginState extends State<login> {
           email: emailController.text.trim(),
           password: passController.text.trim());
     } on FirebaseAuthException catch (e) {
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => Material(
-                color: Colors.transparent,
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        e.message!,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                            fontSize: 25,
-                            backgroundColor: Colors.red,
-                            color: Colors.white),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/');
-                          },
-                          child: Text(
-                            " Back ",
-                            style: GoogleFonts.roboto(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ))
-                    ],
-                  ),
-                ),
-              ));
       print(e);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
@@ -90,8 +58,9 @@ class _loginState extends State<login> {
         backgroundColor: Color.fromARGB(255, 251, 249, 249),
         body: SingleChildScrollView(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SvgPicture.asset("assets/office.svg", height: 300, width: 600),
+            SvgPicture.asset("assets/office.svg", height: 355, width: 600),
             Padding(
                 padding: EdgeInsets.only(left: 17, bottom: 20),
                 child: Align(
@@ -181,64 +150,71 @@ class _loginState extends State<login> {
                       fontSize: 17,
                       color: Color.fromARGB(255, 135, 135, 135)),
                 )),
-            Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextButton(
-                  // ignore: sort_child_properties_last
-                  child: Flex(
-                      direction: Axis.horizontal,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          "assets/google.svg",
-                          width: 25,
-                          height: 25,
-                        ),
-                        Text(
-                          '  Login with Google',
-                          style: GoogleFonts.roboto(
-                            fontSize: 17.0,
-                            color: Color.fromARGB(255, 97, 97, 97),
-                          ),
-                        ),
-                      ]),
-                  style: TextButton.styleFrom(
-                      padding: EdgeInsets.all(13),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      minimumSize: Size(350, 50),
-                      backgroundColor: Color.fromARGB(255, 222, 222, 222),
-                      alignment: Alignment.center),
-                  onPressed: () {
-                    final provider = Provider.of<GoogleSignInProvider>(context,
-                        listen: false);
-                    provider.googleLogin();
-                    //Navigator.pushNamed(context, "/homepage");
-                  },
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 30, bottom: 10),
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Text.rich(TextSpan(style: GoogleFonts.roboto(),
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          TextSpan(
-                              text: "New to SkyConnect?",
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    child: TextButton(
+                      // ignore: sort_child_properties_last
+                      child: Flex(
+                          direction: Axis.horizontal,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/google.svg",
+                              width: 25,
+                              height: 25,
+                            ),
+                            Text(
+                              '  Login with Google',
                               style: GoogleFonts.roboto(
-                                  fontSize: 15,
-                                  color: Color.fromARGB(255, 117, 123, 132))),
-                          TextSpan(
-                              text: "  Register",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.pushNamed(context, '/signup');
-                                },
-                              style: GoogleFonts.roboto(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(1, 101, 255, 1)))
-                        ])))),
+                                fontSize: 17.0,
+                                color: Color.fromARGB(255, 97, 97, 97),
+                              ),
+                            ),
+                          ]),
+                      style: TextButton.styleFrom(
+                          padding: EdgeInsets.all(13),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          minimumSize: Size(350, 50),
+                          backgroundColor: Color.fromARGB(255, 222, 222, 222),
+                          alignment: Alignment.center),
+                      onPressed: () {
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
+                        provider.googleLogin();
+                        //Navigator.pushNamed(context, "/homepage");
+                      },
+                    )),
+                Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text.rich(TextSpan(style: GoogleFonts.roboto(),
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              TextSpan(
+                                  text: "New to SkyConnect?",
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 15,
+                                      color:
+                                          Color.fromARGB(255, 117, 123, 132))),
+                              TextSpan(
+                                  text: "  Register",
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushNamed(context, '/signup');
+                                    },
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(1, 101, 255, 1)))
+                            ])))),
+              ],
+            ),
           ],
         )),
       ),
