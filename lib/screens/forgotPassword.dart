@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sample/utilis/utilis.dart';
+import 'package:sample/mongo/mongodb.dart';
 
 import '../main.dart';
 
@@ -31,9 +31,19 @@ class _forgotPassState extends State<forgotPass> {
       // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, '/resetPass');
     } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          "Opps! ${e.message!}",
+          style: GoogleFonts.roboto(fontSize: 15),
+        ),
+        backgroundColor: Colors.red,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+      ));
       print(e);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.pop();
   }
 
   @override

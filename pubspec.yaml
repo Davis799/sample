@@ -43,6 +43,9 @@ dependencies:
   google_fonts: ^3.0.1
   google_sign_in: ^5.4.1
   provider: ^6.0.3
+  mongo_dart: ^0.7.4+1
+  http_parser: ^4.0.1
+  faker: ^2.0.0
 
 dev_dependencies:
   flutter_test:

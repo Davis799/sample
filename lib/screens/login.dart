@@ -45,9 +45,19 @@ class _loginState extends State<login> {
           email: emailController.text.trim(),
           password: passController.text.trim());
     } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          "Opps! ${e.message!}",
+          style: GoogleFonts.roboto(fontSize: 15),
+        ),
+        backgroundColor: Colors.red,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+      ));
       print(e);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.pop();
   }
 
   @override
@@ -73,6 +83,7 @@ class _loginState extends State<login> {
                 padding: EdgeInsets.only(left: 17, bottom: 10, right: 17),
                 child: TextFormField(
                   textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.alternate_email),

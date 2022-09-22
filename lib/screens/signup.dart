@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sample/utilis/utilis.dart';
+import 'package:sample/mongo/mongodb.dart';
 
 import '../main.dart';
 
@@ -48,9 +48,19 @@ class _signupState extends State<signup> {
           password: passController.text.trim());
       //Navigator.pushNamed(context, '/');
     } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          "Opps! ${e.message!}",
+          style: GoogleFonts.roboto(fontSize: 15),
+        ),
+        backgroundColor: Colors.red,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+      ));
       print(e);
     }
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.pop();
   }
 
   @override
@@ -76,6 +86,7 @@ class _signupState extends State<signup> {
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 13, right: 17),
               child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.alternate_email),
@@ -190,7 +201,7 @@ class _signupState extends State<signup> {
                       alignment: Alignment.center),
                   onPressed: _signIn)),
           Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 10),
+              padding: EdgeInsets.only(top: 15, bottom: 15),
               child: Align(
                   alignment: Alignment.center,
                   child: Text.rich(TextSpan(style: GoogleFonts.openSans(),
