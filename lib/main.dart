@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample/mongo/mongodb.dart';
 import 'package:sample/provider/google_sign_in.dart';
-import 'package:sample/screens/LoggedIn.dart';
+import 'package:sample/screens/addContact.dart';
+import 'package:sample/screens/contactlist.dart';
 import 'screens/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -33,6 +34,7 @@ Future<void> main() async {
           '/': (context) => homepage(),
           '/signup': (context) => signup(),
           '/login': (context) => login(),
+          '/addContact': (context) => LoggedIn(),
           '/forgotPass': (context) => forgotPass(),
           '/otp': (context) => otp(),
           '/resetPass': (context) => resetPass(),
@@ -51,7 +53,7 @@ class homepage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            return LoggedIn();
+            return contactList();
           } else if (snapshot.hasError) {
             return Center(child: Text("Something went wrong!"));
           } else {
