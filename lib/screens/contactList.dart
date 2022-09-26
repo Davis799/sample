@@ -5,8 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sample/contactsmodel.dart';
 import 'package:sample/mongo/mongodb.dart';
+import 'package:sample/screens/update.dart';
 
 import '../provider/google_sign_in.dart';
+import 'addContact.dart';
 
 class contactList extends StatefulWidget {
   const contactList({super.key});
@@ -19,6 +21,7 @@ class _contactListState extends State<contactList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(22, 27, 34, 1),
       appBar: AppBar(
         title: Text(
           "Contacts",
@@ -36,7 +39,18 @@ class _contactListState extends State<contactList> {
               }),
         ],
       ),
-      backgroundColor: Color.fromRGBO(22, 27, 34, 1),
+      floatingActionButton: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(48, 54, 61, 1),
+            borderRadius: BorderRadius.circular(50)),
+        child: IconButton(
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, '/addContact');
+            },
+            icon: Icon(Icons.add)),
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -50,34 +64,16 @@ class _contactListState extends State<contactList> {
               } else if (snapshot.hasData) {
                 var totalData = snapshot.data.length;
                 print(totalData.toString());
-                return Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.only(left: 1, right: 1),
-                        child: ListView.builder(
-                            itemCount: snapshot.data.length,
-                            itemBuilder: ((context, index) {
-                              return displayCard(
-                                  Contacts.fromJson(snapshot.data[index]));
-                            })),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 292, bottom: 10),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(70, 70),
-                          shape: const CircleBorder(),
-                          backgroundColor: Color.fromRGBO(48, 54, 61, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/addContact');
-                        },
-                        child: Icon(Icons.add),
-                      ),
-                    ),
-                  ],
+                return Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 1, right: 1),
+                    child: ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: ((context, index) {
+                          return displayCard(
+                              Contacts.fromJson(snapshot.data[index]));
+                        })),
+                  ),
                 );
               } else {
                 print("no data");
@@ -113,38 +109,96 @@ class _contactListState extends State<contactList> {
 
   Widget displayCard(Contacts data) {
     return Card(
+      elevation: 0,
+      color: Colors.transparent,
       child: Container(
-        padding:
-            const EdgeInsets.only(left: 14, top: 12, bottom: 14, right: 14),
+        margin: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.all(15),
         alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
-          color: Color.fromRGBO(13, 17, 23, 1),
-          borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(25), bottomLeft: Radius.circular(25)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        decoration: const BoxDecoration(
+            color: Color.fromRGBO(13, 17, 23, 1),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("${data.fname}",
-                style: GoogleFonts.roboto(
-                    fontSize: 20,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("${data.fname}",
+                    style: GoogleFonts.roboto(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text("${data.lname}",
+                    style:
+                        GoogleFonts.roboto(fontSize: 18, color: Colors.white)),
+                SizedBox(
+                  height: 5,
+                ),
+                Text("${data.address}",
+                    style:
+                        GoogleFonts.roboto(fontSize: 18, color: Colors.white)),
+                SizedBox(
+                  height: 5,
+                ),
+                Text("${data.phone}",
+                    style:
+                        GoogleFonts.roboto(fontSize: 18, color: Colors.white))
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ElevatedButton(
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      backgroundColor: Color.fromRGBO(48, 54, 61, 1),
+                      minimumSize: Size(10, 10),
+                      alignment: Alignment.center),
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return update();
+                                },
+                                settings: RouteSettings(arguments: data)))
+                        .then((value) {
+                      setState(() {});
+                    });
+                  },
+                  child: const Icon(
+                    Icons.edit,
                     color: Colors.white,
-                    fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 5,
-            ),
-            Text("${data.lname}",
-                style: GoogleFonts.roboto(fontSize: 18, color: Colors.white)),
-            SizedBox(
-              height: 5,
-            ),
-            Text("${data.address}",
-                style: GoogleFonts.roboto(fontSize: 18, color: Colors.white)),
-            SizedBox(
-              height: 5,
-            ),
-            Text("${data.phone}",
-                style: GoogleFonts.roboto(fontSize: 18, color: Colors.white))
+                  ),
+                ),
+                const SizedBox(
+                  height: 130,
+                ),
+                ElevatedButton(
+                    style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        backgroundColor: const Color.fromRGBO(48, 54, 61, 1),
+                        minimumSize: const Size(10, 10),
+                        alignment: Alignment.center),
+                    onPressed: () {
+                      MongoDatabase.delete(data);
+                      setState(() {});
+                    },
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    )),
+              ],
+            )
           ],
         ),
       ),

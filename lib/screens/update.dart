@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings, use_build_context_synchronously
 
-import 'dart:html';
-
 import 'package:faker/faker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,41 +10,21 @@ import 'package:provider/provider.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:sample/contactsmodel.dart';
 import 'package:sample/mongo/mongodb.dart';
-import 'package:sample/screens/contactlist.dart';
 import '../provider/google_sign_in.dart';
 
-class LoggedIn extends StatefulWidget {
-  const LoggedIn({super.key});
+class update extends StatefulWidget {
+  const update({super.key});
 
   @override
-  State<LoggedIn> createState() => _LoggedInState();
+  State<update> createState() => _updateState();
 }
 
-class _LoggedInState extends State<LoggedIn> {
+class _updateState extends State<update> {
   final user = FirebaseAuth.instance.currentUser!;
   final fnamecontroller = TextEditingController();
   final lnamecontroller = TextEditingController();
   final addresscontroller = TextEditingController();
   final phonecontroller = TextEditingController();
-
-  Future _insertContact(
-      String fname, String lname, String address, String phone) async {
-    var id = M.ObjectId();
-    final data = Contacts(
-        id: id, fname: fname, lname: lname, address: address, phone: phone);
-    var result = await MongoDatabase.insert(data);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        "Contact successfully added. ID:" + id.$oid,
-        style: GoogleFonts.roboto(fontSize: 15),
-      ),
-      backgroundColor: Colors.green,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10), topRight: Radius.circular(10))),
-    ));
-    Navigator.pushNamed(context, "/contactList");
-  }
 
   Future _updateContact(
       var id, String fname, String lname, String address, String phone) async {
@@ -54,13 +32,6 @@ class _LoggedInState extends State<LoggedIn> {
         id: id, fname: fname, lname: lname, address: address, phone: phone);
     await MongoDatabase.update(updateData)
         .whenComplete(() => Navigator.pop(context));
-  }
-
-  void _clearAll() {
-    fnamecontroller.text = " ";
-    lnamecontroller.text = " ";
-    addresscontroller.text = " ";
-    phonecontroller.text = " ";
   }
 
   void fakedata() {
@@ -74,11 +45,18 @@ class _LoggedInState extends State<LoggedIn> {
 
   @override
   Widget build(BuildContext context) {
+    Contacts data = ModalRoute.of(context)?.settings.arguments as Contacts;
+    if (data != null) {
+      fnamecontroller.text = data.fname;
+      lnamecontroller.text = data.lname;
+      addresscontroller.text = data.address;
+      phonecontroller.text = data.phone;
+    }
     return Scaffold(
         backgroundColor: Color.fromRGBO(22, 27, 34, 1),
         appBar: AppBar(
           title: Text(
-            "Add Contact",
+            "Update Contact",
             style: GoogleFonts.roboto(fontSize: 30),
           ),
           centerTitle: true,
@@ -102,42 +80,7 @@ class _LoggedInState extends State<LoggedIn> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Text(
-                    //   "Profile",
-                    //   style: GoogleFonts.roboto(
-                    //       fontSize: 25, fontWeight: FontWeight.w700),
-                    // ),
-                    SizedBox(height: 10),
-                    // CircleAvatar(
-                    //     radius: 77, backgroundImage: NetworkImage(user.photoURL!)),
-                    SizedBox(height: 30),
-                    // Text(
-                    //   "Name:  " + user.displayName!,
-                    //   style: GoogleFonts.roboto(fontSize: 19),
-                    // ),
-                    SizedBox(height: 10),
-                    Text(
-                      "Email:  " + user.email!,
-                      style:
-                          GoogleFonts.roboto(fontSize: 19, color: Colors.white),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "Last sign in: " +
-                          user.metadata.lastSignInTime.toString(),
-                      style:
-                          GoogleFonts.roboto(fontSize: 19, color: Colors.white),
-                    ),
                     SizedBox(height: 20),
-                    // Center(
-                    //   child: Text(
-                    //     "Enter a contact",
-                    //     style: GoogleFonts.roboto(
-                    //         fontSize: 27,
-                    //         fontWeight: FontWeight.bold,
-                    //         color: Color.fromARGB(255, 255, 255, 255)),
-                    //   ),
-                    // ),
                     Container(
                       margin: EdgeInsets.only(top: 5),
                       child: TextFormField(
@@ -254,14 +197,15 @@ class _LoggedInState extends State<LoggedIn> {
                                   minimumSize: Size(115, 10),
                                   alignment: Alignment.center),
                               onPressed: () {
-                                _insertContact(
-                                    fnamecontroller.text.trim(),
-                                    lnamecontroller.text.trim(),
-                                    addresscontroller.text.trim(),
-                                    phonecontroller.text.trim());
+                                _updateContact(
+                                    data.id,
+                                    fnamecontroller.text,
+                                    lnamecontroller.text,
+                                    addresscontroller.text,
+                                    phonecontroller.text);
                               },
                               child: Text(
-                                "Add",
+                                "Update",
                                 style: GoogleFonts.roboto(fontSize: 20),
                               ))
                         ],

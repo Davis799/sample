@@ -66,11 +66,11 @@ class _signupState extends State<signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 251, 249, 249),
+      backgroundColor: Color.fromRGBO(22, 27, 34, 1),
       body: SingleChildScrollView(
           child: Column(
         children: [
-          SvgPicture.asset("assets/teamwork.svg", height: 285, width: 600),
+          SvgPicture.asset("assets/teamwork.svg", height: 255, width: 600),
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 20, top: 5),
               child: Align(
@@ -78,10 +78,10 @@ class _signupState extends State<signup> {
                   child: Text(
                     "Sign up",
                     textAlign: TextAlign.left,
-                    style: GoogleFonts.openSans(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                    ),
+                    style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Colors.white),
                   ))),
           Padding(
               padding: EdgeInsets.only(left: 17, bottom: 13, right: 17),
@@ -89,43 +89,56 @@ class _signupState extends State<signup> {
                 keyboardType: TextInputType.emailAddress,
                 controller: emailController,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.alternate_email),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 195, 194, 194))),
+                    filled: true,
+                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    prefixIcon: Icon(
+                      Icons.alternate_email,
+                      color: Colors.grey,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                        borderRadius: BorderRadius.circular(10)),
                     border: InputBorder.none,
-                    hintText: 'Enter Your Email'),
-                style: GoogleFonts.openSans(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                    hintText: 'Enter Your Email',
+                    hintStyle: TextStyle(color: Colors.grey)),
+                style: GoogleFonts.roboto(fontSize: 17, color: Colors.white),
               )),
           Padding(
               padding: EdgeInsets.only(left: 17, right: 17, bottom: 13),
               child: TextFormField(
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person_rounded),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 195, 194, 194))),
-                  border: InputBorder.none,
-                  hintText: 'Full name',
-                ),
-                style: GoogleFonts.openSans(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                    filled: true,
+                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    prefixIcon: Icon(
+                      Icons.person_rounded,
+                      color: Colors.grey,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                        borderRadius: BorderRadius.circular(10)),
+                    border: InputBorder.none,
+                    hintText: 'Full name',
+                    hintStyle: TextStyle(color: Colors.grey)),
+                style: GoogleFonts.roboto(fontSize: 17, color: Colors.white),
               )),
           Padding(
               padding: EdgeInsets.only(left: 17, right: 17, bottom: 13),
               child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.phone),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 195, 194, 194))),
-                  border: InputBorder.none,
-                  hintText: 'Mobile',
-                ),
-                style: GoogleFonts.openSans(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                    filled: true,
+                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    prefixIcon: Icon(
+                      Icons.phone,
+                      color: Colors.grey,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                        borderRadius: BorderRadius.circular(10)),
+                    border: InputBorder.none,
+                    hintText: 'Mobile',
+                    hintStyle: TextStyle(color: Colors.grey)),
+                style: GoogleFonts.roboto(fontSize: 17, color: Colors.white),
               )),
           Padding(
               padding: EdgeInsets.only(left: 17, right: 17, bottom: 10),
@@ -134,52 +147,54 @@ class _signupState extends State<signup> {
                 textInputAction: TextInputAction.next,
                 obscureText: invisible,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock_rounded),
-                  suffixIcon: GestureDetector(
-                      onTap: togglePass,
-                      child: Icon(
-                        invisible
-                            ? Icons.visibility_off
-                            : Icons.visibility_sharp,
-                      )),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 195, 194, 194))),
-                  border: InputBorder.none,
-                  hintText: 'Password  (min 6 characters)',
-                ),
-                style: GoogleFonts.roboto(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                    filled: true,
+                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    prefixIcon: Icon(Icons.lock_rounded, color: Colors.grey),
+                    suffixIcon: GestureDetector(
+                        onTap: togglePass,
+                        child: Icon(
+                          invisible
+                              ? Icons.visibility_off
+                              : Icons.visibility_sharp,
+                          color: Colors.grey,
+                        )),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
+                        borderRadius: BorderRadius.circular(10)),
+                    border: InputBorder.none,
+                    hintText: 'Password  (min 6 characters)',
+                    hintStyle: TextStyle(color: Colors.grey)),
+                style: GoogleFonts.roboto(fontSize: 17, color: Colors.white),
               )),
           Padding(
               padding: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text.rich(TextSpan(style: GoogleFonts.openSans(),
+                  child: Text.rich(TextSpan(style: GoogleFonts.roboto(),
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TextSpan(
                             text: "By signing up, you agree to our",
-                            style: GoogleFonts.openSans(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
-                                color: Color.fromARGB(255, 117, 123, 132))),
+                                color: Color.fromRGBO(139, 148, 158, 1))),
                         TextSpan(
                             text: "  Terms & Conditions",
-                            style: GoogleFonts.openSans(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromRGBO(1, 101, 255, 1))),
+                                color: Colors.white)),
                         TextSpan(
                             text: " and ",
-                            style: GoogleFonts.openSans(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
-                                color: Color.fromARGB(255, 117, 123, 132))),
+                                color: Color.fromRGBO(139, 148, 158, 1))),
                         TextSpan(
                             text: "Privacy Policy",
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromRGBO(1, 101, 255, 1)))
+                                color: Colors.white))
                       ])))),
           Container(
               padding: EdgeInsets.only(top: 20),
@@ -187,9 +202,9 @@ class _signupState extends State<signup> {
                   // ignore: sort_child_properties_last
                   child: Text(
                     'Continue',
-                    style: GoogleFonts.openSans(
-                      fontSize: 17.0,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                    style: GoogleFonts.roboto(
+                      fontSize: 18,
+                      color: Colors.white,
                     ),
                   ),
                   style: TextButton.styleFrom(
@@ -197,19 +212,19 @@ class _signupState extends State<signup> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       minimumSize: Size(350, 50),
-                      backgroundColor: Color.fromRGBO(1, 101, 255, 1),
+                      backgroundColor: Color.fromRGBO(47, 53, 60, 1),
                       alignment: Alignment.center),
                   onPressed: _signIn)),
           Padding(
               padding: EdgeInsets.only(top: 15, bottom: 15),
               child: Align(
                   alignment: Alignment.center,
-                  child: Text.rich(TextSpan(style: GoogleFonts.openSans(),
+                  child: Text.rich(TextSpan(style: GoogleFonts.roboto(),
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         TextSpan(
                             text: "Joined us before?",
-                            style: GoogleFonts.openSans(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 117, 123, 132))),
                         TextSpan(
@@ -218,10 +233,10 @@ class _signupState extends State<signup> {
                               ..onTap = () {
                                 Navigator.pushNamed(context, '/login');
                               },
-                            style: GoogleFonts.openSans(
+                            style: GoogleFonts.roboto(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromRGBO(1, 101, 255, 1)))
+                                color: Colors.white))
                       ])))),
         ],
       )),

@@ -65,12 +65,12 @@ class _loginState extends State<login> {
     return ChangeNotifierProvider(
       create: (context) => GoogleSignInProvider(),
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 251, 249, 249),
+        backgroundColor: Color.fromRGBO(22, 27, 34, 1),
         body: SingleChildScrollView(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SvgPicture.asset("assets/office.svg", height: 355, width: 600),
+            SvgPicture.asset("assets/office.svg", height: 332, width: 600),
             Padding(
                 padding: EdgeInsets.only(left: 17, bottom: 20),
                 child: Align(
@@ -78,7 +78,9 @@ class _loginState extends State<login> {
                     child: Text("Login",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.roboto(
-                            fontSize: 40, fontWeight: FontWeight.bold)))),
+                            color: Colors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold)))),
             Padding(
                 padding: EdgeInsets.only(left: 17, bottom: 10, right: 17),
                 child: TextFormField(
@@ -86,14 +88,20 @@ class _loginState extends State<login> {
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.alternate_email),
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(255, 195, 194, 194))),
+                      filled: true,
+                      fillColor: Color.fromRGBO(13, 17, 23, 1),
+                      prefixIcon: Icon(
+                        Icons.alternate_email,
+                        color: Colors.grey,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       border: InputBorder.none,
-                      hintText: 'Enter Your Email'),
-                  style: GoogleFonts.roboto(
-                      fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                      hintText: 'Enter Your Email',
+                      hintStyle: TextStyle(color: Colors.grey)),
+                  style: GoogleFonts.roboto(fontSize: 18, color: Colors.white),
                 )),
             Padding(
                 padding: EdgeInsets.only(left: 17, right: 17, bottom: 10),
@@ -102,22 +110,28 @@ class _loginState extends State<login> {
                   textInputAction: TextInputAction.next,
                   obscureText: invisible,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.lock_rounded),
-                    suffixIcon: GestureDetector(
-                        onTap: togglePass,
-                        child: Icon(
-                          invisible
-                              ? Icons.visibility_off
-                              : Icons.visibility_sharp,
-                        )),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 195, 194, 194))),
-                    border: InputBorder.none,
-                    hintText: 'Password',
-                  ),
-                  style: GoogleFonts.roboto(
-                      fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                      filled: true,
+                      fillColor: Color.fromRGBO(13, 17, 23, 1),
+                      prefixIcon: Icon(
+                        Icons.lock_rounded,
+                        color: Colors.grey,
+                      ),
+                      suffixIcon: GestureDetector(
+                          onTap: togglePass,
+                          child: Icon(
+                            invisible
+                                ? Icons.visibility_off
+                                : Icons.visibility_sharp,
+                            color: Colors.grey,
+                          )),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      border: InputBorder.none,
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.grey)),
+                  style: GoogleFonts.roboto(fontSize: 18, color: Colors.white),
                 )),
             Padding(
                 padding: EdgeInsets.only(right: 17, top: 5, bottom: 20),
@@ -132,14 +146,14 @@ class _loginState extends State<login> {
                           style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
-                              color: Color.fromRGBO(1, 101, 255, 1)),
+                              color: Colors.white),
                         )))),
             TextButton(
                 // ignore: sort_child_properties_last
                 child: Text(
                   'Login',
                   style: GoogleFonts.roboto(
-                    fontSize: 17.0,
+                    fontSize: 20,
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),
                 ),
@@ -148,7 +162,7 @@ class _loginState extends State<login> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     minimumSize: Size(350, 50),
-                    backgroundColor: Color.fromRGBO(1, 101, 255, 1),
+                    backgroundColor: Color.fromRGBO(47, 53, 60, 1),
                     alignment: Alignment.center),
                 onPressed: _logIn),
             Padding(
@@ -159,7 +173,7 @@ class _loginState extends State<login> {
                   style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
                       fontSize: 17,
-                      color: Color.fromARGB(255, 135, 135, 135)),
+                      color: Color.fromRGBO(139, 148, 158, 1)),
                 )),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -180,8 +194,8 @@ class _loginState extends State<login> {
                             Text(
                               '  Login with Google',
                               style: GoogleFonts.roboto(
-                                fontSize: 17.0,
-                                color: Color.fromARGB(255, 97, 97, 97),
+                                fontSize: 19,
+                                color: Colors.black,
                               ),
                             ),
                           ]),
@@ -190,7 +204,7 @@ class _loginState extends State<login> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           minimumSize: Size(350, 50),
-                          backgroundColor: Color.fromARGB(255, 222, 222, 222),
+                          backgroundColor: Colors.white,
                           alignment: Alignment.center),
                       onPressed: () {
                         final provider = Provider.of<GoogleSignInProvider>(
@@ -201,7 +215,7 @@ class _loginState extends State<login> {
                       },
                     )),
                 Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 10),
+                    padding: EdgeInsets.only(top: 20, bottom: 15),
                     child: Align(
                         alignment: Alignment.center,
                         child: Text.rich(TextSpan(style: GoogleFonts.roboto(),
@@ -211,8 +225,7 @@ class _loginState extends State<login> {
                                   text: "New to SkyConnect?",
                                   style: GoogleFonts.roboto(
                                       fontSize: 15,
-                                      color:
-                                          Color.fromARGB(255, 117, 123, 132))),
+                                      color: Color.fromRGBO(139, 148, 158, 1))),
                               TextSpan(
                                   text: "  Register",
                                   recognizer: TapGestureRecognizer()
@@ -222,7 +235,7 @@ class _loginState extends State<login> {
                                   style: GoogleFonts.roboto(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
-                                      color: Color.fromRGBO(1, 101, 255, 1)))
+                                      color: Colors.white))
                             ])))),
               ],
             ),

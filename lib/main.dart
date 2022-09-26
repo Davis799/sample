@@ -38,6 +38,7 @@ Future<void> main() async {
           '/forgotPass': (context) => forgotPass(),
           '/otp': (context) => otp(),
           '/resetPass': (context) => resetPass(),
+          '/contactList': (context) => contactList(),
         },
       )));
 }
