@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/config/theme.dart';
 import 'package:sample/mongo/mongodb.dart';
 
 import '../main.dart';
@@ -66,7 +67,7 @@ class _signupState extends State<signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(22, 27, 34, 1),
+      backgroundColor: theme().scaffoldBackgroundColor,
       body: SingleChildScrollView(
           child: Column(
         children: [
@@ -90,7 +91,7 @@ class _signupState extends State<signup> {
                 controller: emailController,
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    fillColor: theme().cardColor,
                     prefixIcon: Icon(
                       Icons.alternate_email,
                       color: Colors.grey,
@@ -108,7 +109,7 @@ class _signupState extends State<signup> {
               child: TextFormField(
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    fillColor: theme().cardColor,
                     prefixIcon: Icon(
                       Icons.person_rounded,
                       color: Colors.grey,
@@ -127,7 +128,7 @@ class _signupState extends State<signup> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    fillColor: theme().cardColor,
                     prefixIcon: Icon(
                       Icons.phone,
                       color: Colors.grey,
@@ -148,7 +149,7 @@ class _signupState extends State<signup> {
                 obscureText: invisible,
                 decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromRGBO(13, 17, 23, 1),
+                    fillColor: theme().cardColor,
                     prefixIcon: Icon(Icons.lock_rounded, color: Colors.grey),
                     suffixIcon: GestureDetector(
                         onTap: togglePass,
@@ -176,8 +177,7 @@ class _signupState extends State<signup> {
                         TextSpan(
                             text: "By signing up, you agree to our",
                             style: GoogleFonts.roboto(
-                                fontSize: 15,
-                                color: Color.fromRGBO(139, 148, 158, 1))),
+                                fontSize: 15, color: Colors.grey)),
                         TextSpan(
                             text: "  Terms & Conditions",
                             style: GoogleFonts.roboto(
@@ -187,8 +187,7 @@ class _signupState extends State<signup> {
                         TextSpan(
                             text: " and ",
                             style: GoogleFonts.roboto(
-                                fontSize: 15,
-                                color: Color.fromRGBO(139, 148, 158, 1))),
+                                fontSize: 15, color: Colors.grey)),
                         TextSpan(
                             text: "Privacy Policy",
                             style: TextStyle(
@@ -212,7 +211,7 @@ class _signupState extends State<signup> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       minimumSize: Size(350, 50),
-                      backgroundColor: Color.fromRGBO(47, 53, 60, 1),
+                      backgroundColor: theme().accentColor,
                       alignment: Alignment.center),
                   onPressed: _signIn)),
           Padding(
@@ -225,8 +224,7 @@ class _signupState extends State<signup> {
                         TextSpan(
                             text: "Joined us before?",
                             style: GoogleFonts.roboto(
-                                fontSize: 15,
-                                color: Color.fromARGB(255, 117, 123, 132))),
+                                fontSize: 15, color: Colors.grey)),
                         TextSpan(
                             text: "  Login",
                             recognizer: TapGestureRecognizer()

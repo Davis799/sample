@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sample/config/theme.dart';
 import 'package:sample/mongo/mongodb.dart';
 
 import '../main.dart';
@@ -49,7 +50,7 @@ class _forgotPassState extends State<forgotPass> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 251, 249, 249),
+      backgroundColor: theme().scaffoldBackgroundColor,
       body: SingleChildScrollView(
           child: Column(
         children: [
@@ -61,19 +62,19 @@ class _forgotPassState extends State<forgotPass> {
                   child: Text(
                     "Forgot \nPassword?",
                     textAlign: TextAlign.left,
-                    style: GoogleFonts.openSans(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                    ),
+                    style: GoogleFonts.roboto(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: theme().primaryColorLight),
                   ))),
           Padding(
             padding: EdgeInsets.only(top: 10, bottom: 15, left: 20, right: 20),
             child: Text(
               "Don't worry! It happens. Please enter the address associated with your account",
-              style: GoogleFonts.openSans(
+              style: GoogleFonts.roboto(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(134, 144, 157, 1)),
+                  color: Colors.grey),
             ),
           ),
           Padding(
@@ -82,14 +83,20 @@ class _forgotPassState extends State<forgotPass> {
               child: TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.alternate_email),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromRGBO(134, 144, 157, 1))),
+                    filled: true,
+                    fillColor: theme().cardColor,
+                    prefixIcon: Icon(
+                      Icons.alternate_email,
+                      color: Colors.grey,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.grey, width: 1)),
                     border: InputBorder.none,
+                    hintStyle: TextStyle(color: Colors.grey),
                     hintText: 'Email ID'),
-                style: GoogleFonts.openSans(
-                    fontSize: 17, color: Color.fromARGB(255, 0, 0, 0)),
+                style: GoogleFonts.roboto(
+                    fontSize: 17, color: theme().primaryColorLight),
               )),
           Container(
               padding: EdgeInsets.only(top: 30, bottom: 10),
@@ -97,9 +104,9 @@ class _forgotPassState extends State<forgotPass> {
                   // ignore: sort_child_properties_last
                   child: Text(
                     'Submit',
-                    style: GoogleFonts.openSans(
-                      fontSize: 17.0,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      color: theme().primaryColorLight,
                     ),
                   ),
                   style: TextButton.styleFrom(
@@ -107,7 +114,7 @@ class _forgotPassState extends State<forgotPass> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       minimumSize: Size(350, 50),
-                      backgroundColor: Color.fromRGBO(1, 101, 255, 1),
+                      backgroundColor: theme().backgroundColor,
                       alignment: Alignment.center),
                   onPressed: _resetPass)),
         ],

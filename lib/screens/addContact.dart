@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_interpolation_to_compose_strings, use_build_context_synchronously
 
-import 'dart:html';
-
 import 'package:faker/faker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +8,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
+import 'package:sample/config/theme.dart';
 import 'package:sample/contactsmodel.dart';
 import 'package:sample/mongo/mongodb.dart';
 import 'package:sample/screens/contactlist.dart';
@@ -37,7 +36,7 @@ class _LoggedInState extends State<LoggedIn> {
     var result = await MongoDatabase.insert(data);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(
-        "Contact successfully added. ID:" + id.$oid,
+        "Contact successfully added " + fname,
         style: GoogleFonts.roboto(fontSize: 15),
       ),
       backgroundColor: Colors.green,
@@ -75,25 +74,25 @@ class _LoggedInState extends State<LoggedIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(22, 27, 34, 1),
+        backgroundColor: theme().scaffoldBackgroundColor,
+        floatingActionButton: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            fixedSize: const Size(60, 60),
+            shape: const CircleBorder(),
+            backgroundColor: theme().accentColor,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/');
+          },
+          child: Icon(Icons.view_list_rounded),
+        ),
         appBar: AppBar(
           title: Text(
             "Add Contact",
             style: GoogleFonts.roboto(fontSize: 30),
           ),
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        ),
-        floatingActionButton: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            fixedSize: const Size(70, 70),
-            shape: const CircleBorder(),
-            backgroundColor: Color.fromRGBO(48, 54, 61, 1),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/');
-          },
-          child: Icon(Icons.view_list_rounded),
+          backgroundColor: theme().primaryColorDark,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -102,19 +101,6 @@ class _LoggedInState extends State<LoggedIn> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Text(
-                    //   "Profile",
-                    //   style: GoogleFonts.roboto(
-                    //       fontSize: 25, fontWeight: FontWeight.w700),
-                    // ),
-                    SizedBox(height: 10),
-                    // CircleAvatar(
-                    //     radius: 77, backgroundImage: NetworkImage(user.photoURL!)),
-                    SizedBox(height: 30),
-                    // Text(
-                    //   "Name:  " + user.displayName!,
-                    //   style: GoogleFonts.roboto(fontSize: 19),
-                    // ),
                     SizedBox(height: 10),
                     Text(
                       "Email:  " + user.email!,
@@ -148,7 +134,7 @@ class _LoggedInState extends State<LoggedIn> {
                         controller: fnamecontroller,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "First name",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -168,7 +154,7 @@ class _LoggedInState extends State<LoggedIn> {
                         controller: lnamecontroller,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "Last name",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -190,7 +176,7 @@ class _LoggedInState extends State<LoggedIn> {
                         maxLines: 3,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "Address",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -211,7 +197,7 @@ class _LoggedInState extends State<LoggedIn> {
                         controller: phonecontroller,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "Phone number",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -230,8 +216,8 @@ class _LoggedInState extends State<LoggedIn> {
                               style: OutlinedButton.styleFrom(
                                   padding: EdgeInsets.all(15),
                                   side: BorderSide(
-                                    width: 2,
-                                    color: Color.fromRGBO(48, 54, 61, 1),
+                                    width: 1,
+                                    color: Colors.grey,
                                   ),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
@@ -249,8 +235,7 @@ class _LoggedInState extends State<LoggedIn> {
                                   padding: EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  backgroundColor:
-                                      Color.fromRGBO(48, 54, 61, 1),
+                                  backgroundColor: theme().backgroundColor,
                                   minimumSize: Size(115, 10),
                                   alignment: Alignment.center),
                               onPressed: () {

@@ -8,6 +8,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
+import 'package:sample/config/theme.dart';
 import 'package:sample/contactsmodel.dart';
 import 'package:sample/mongo/mongodb.dart';
 import '../provider/google_sign_in.dart';
@@ -53,20 +54,20 @@ class _updateState extends State<update> {
       phonecontroller.text = data.phone;
     }
     return Scaffold(
-        backgroundColor: Color.fromRGBO(22, 27, 34, 1),
+        backgroundColor: theme().scaffoldBackgroundColor,
         appBar: AppBar(
           title: Text(
             "Update Contact",
             style: GoogleFonts.roboto(fontSize: 30),
           ),
           centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: theme().primaryColorDark,
         ),
         floatingActionButton: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            fixedSize: const Size(70, 70),
+            fixedSize: const Size(60, 60),
             shape: const CircleBorder(),
-            backgroundColor: Color.fromRGBO(48, 54, 61, 1),
+            backgroundColor: theme().accentColor,
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/');
@@ -91,7 +92,7 @@ class _updateState extends State<update> {
                         controller: fnamecontroller,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "First name",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -111,7 +112,7 @@ class _updateState extends State<update> {
                         controller: lnamecontroller,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "Last name",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -133,7 +134,7 @@ class _updateState extends State<update> {
                         maxLines: 3,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "Address",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -154,7 +155,7 @@ class _updateState extends State<update> {
                         controller: phonecontroller,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromRGBO(13, 17, 23, 1),
+                            fillColor: theme().cardColor,
                             hintText: "Phone number",
                             hintStyle: TextStyle(color: Colors.grey),
                             border: InputBorder.none,
@@ -167,33 +168,14 @@ class _updateState extends State<update> {
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                  padding: EdgeInsets.all(15),
-                                  side: BorderSide(
-                                    width: 2,
-                                    color: Color.fromRGBO(48, 54, 61, 1),
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  minimumSize: Size(115, 10),
-                                  alignment: Alignment.center),
-                              onPressed: fakedata,
-                              child: Text(
-                                "Generate",
-                                style: GoogleFonts.roboto(
-                                    fontSize: 20,
-                                    color: Color.fromARGB(255, 255, 255, 255)),
-                              )),
                           ElevatedButton(
                               style: TextButton.styleFrom(
                                   padding: EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  backgroundColor:
-                                      Color.fromRGBO(48, 54, 61, 1),
+                                  backgroundColor: theme().backgroundColor,
                                   minimumSize: Size(115, 10),
                                   alignment: Alignment.center),
                               onPressed: () {

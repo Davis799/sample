@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sample/config/theme.dart';
 
 import '../main.dart';
 import '../provider/google_sign_in.dart';
@@ -65,7 +66,7 @@ class _loginState extends State<login> {
     return ChangeNotifierProvider(
       create: (context) => GoogleSignInProvider(),
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(22, 27, 34, 1),
+        backgroundColor: theme().scaffoldBackgroundColor,
         body: SingleChildScrollView(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -78,7 +79,7 @@ class _loginState extends State<login> {
                     child: Text("Login",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.roboto(
-                            color: Colors.white,
+                            color: theme().primaryColorLight,
                             fontSize: 40,
                             fontWeight: FontWeight.bold)))),
             Padding(
@@ -89,7 +90,7 @@ class _loginState extends State<login> {
                   controller: emailController,
                   decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color.fromRGBO(13, 17, 23, 1),
+                      fillColor: theme().cardColor,
                       prefixIcon: Icon(
                         Icons.alternate_email,
                         color: Colors.grey,
@@ -101,7 +102,8 @@ class _loginState extends State<login> {
                       border: InputBorder.none,
                       hintText: 'Enter Your Email',
                       hintStyle: TextStyle(color: Colors.grey)),
-                  style: GoogleFonts.roboto(fontSize: 18, color: Colors.white),
+                  style: GoogleFonts.roboto(
+                      fontSize: 18, color: theme().primaryColorLight),
                 )),
             Padding(
                 padding: EdgeInsets.only(left: 17, right: 17, bottom: 10),
@@ -111,7 +113,7 @@ class _loginState extends State<login> {
                   obscureText: invisible,
                   decoration: InputDecoration(
                       filled: true,
-                      fillColor: Color.fromRGBO(13, 17, 23, 1),
+                      fillColor: theme().cardColor,
                       prefixIcon: Icon(
                         Icons.lock_rounded,
                         color: Colors.grey,
@@ -154,7 +156,7 @@ class _loginState extends State<login> {
                   'Login',
                   style: GoogleFonts.roboto(
                     fontSize: 20,
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: Colors.white,
                   ),
                 ),
                 style: TextButton.styleFrom(
@@ -162,7 +164,7 @@ class _loginState extends State<login> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     minimumSize: Size(350, 50),
-                    backgroundColor: Color.fromRGBO(47, 53, 60, 1),
+                    backgroundColor: theme().accentColor,
                     alignment: Alignment.center),
                 onPressed: _logIn),
             Padding(
@@ -195,7 +197,7 @@ class _loginState extends State<login> {
                               '  Login with Google',
                               style: GoogleFonts.roboto(
                                 fontSize: 19,
-                                color: Colors.black,
+                                color: theme().primaryColor,
                               ),
                             ),
                           ]),
